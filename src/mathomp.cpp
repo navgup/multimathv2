@@ -424,12 +424,6 @@ int rem_pio2(double *x, double *y, int e0, int nx, int prec, const int32_t *ipio
                 fv = (fv + fq[i]);
             }
             y[0] = (ih == 0) ? fv : -fv;
-            /* GCC mainline (to be GCC 9), as of 2018-05-22 on i686, warns
-               that fq[0] may be used uninitialized.  This is not possible
-               because jz is always nonnegative when the above loop
-               initializing fq is executed, because the result is never zero
-               to full precision (this function is not called for zero
-               arguments).  */
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
             fv = (fq[0] - fv);
